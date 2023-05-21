@@ -15,7 +15,7 @@ import java.util.List;
 
 @Component
 @Slf4j
-public class MessageProducer {
+public class AdvertisementNotificationProducer {
   @Autowired
   private KafkaTemplate<String, Advertisement> notificationKafkaTemplate;
 
@@ -36,7 +36,7 @@ public class MessageProducer {
       future.addCallback(new ListenableFutureCallback<>() {
         @Override
         public void onSuccess(SendResult<String, Advertisement> result) {
-          log.info("Publicando a notificacao=[" + advertisement.getCode() +
+          log.debug("Publicando a notificacao=[" + advertisement.getCode() +
               "] with offset=[" + result.getRecordMetadata().offset() + "]");
         }
 

@@ -10,16 +10,22 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
-public class MessageListener {
+public class AdvertisementNotificationListener {
   @Autowired
   private NotificationStrategyFactory strategyFactory;
 
   @KafkaListener(topics = "${kafka.topic.notification}",
       groupId = "${kafka.topic.groupId}", containerFactory = "advertisementKafkaListener")
   public void advertisement(Advertisement advertisement) {
-    log.info("Received Message in group record: " + advertisement);
+    log.debug("Received Message in group record: " + advertisement);
     var channel = ChannelType.valueOf(advertisement.getChannel());
-    strategyFactory.getNotification(channel).sendIt(advertisement);
+
+    try {
+      strategyFactory.getNotification(channel).sendIt(advertisement);
+    } catch (Exception e) {
+      log.error(String.format("Failure on notifying the advertisement=%s", advertisement), e);
+    }
+
   }
 
 }

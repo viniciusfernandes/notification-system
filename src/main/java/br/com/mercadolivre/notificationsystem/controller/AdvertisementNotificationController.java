@@ -1,7 +1,7 @@
 package br.com.mercadolivre.notificationsystem.controller;
 
 import br.com.mercadolivre.notificationsystem.exception.BusinessException;
-import br.com.mercadolivre.notificationsystem.message.MessageProducer;
+import br.com.mercadolivre.notificationsystem.message.AdvertisementNotificationProducer;
 import br.com.mercadolivre.notificationsystem.model.Advertisement;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 public class AdvertisementNotificationController {
   @Autowired
-  private MessageProducer messageProducer;
+  private AdvertisementNotificationProducer messageProducer;
 
   @PostMapping("/advertisement-notifications")
   public ResponseEntity<String> saveNotifications(@RequestBody List< Advertisement> advertisements) {
