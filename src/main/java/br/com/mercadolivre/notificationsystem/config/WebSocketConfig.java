@@ -20,7 +20,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
   @Override
   public void registerStompEndpoints(StompEndpointRegistry registry) {
-    registry.addEndpoint("/advertisement-notifications")
+    registry.addEndpoint("/advertisement-notifications/")
         .setAllowedOrigins("http://localhost:8091/index.html")
         .addInterceptors(new HttpSessionHandshakeInterceptor())
         .setHandshakeHandler(new DefaultHandshakeHandler())

@@ -1,8 +1,8 @@
 package br.com.mercadolivre.notificationsystem.message;
 
 import br.com.mercadolivre.notificationsystem.model.Advertisement;
-import br.com.mercadolivre.notificationsystem.service.ChannelType;
-import br.com.mercadolivre.notificationsystem.service.NotificationStrategyFactory;
+import br.com.mercadolivre.notificationsystem.notification.ChannelType;
+import br.com.mercadolivre.notificationsystem.notification.NotificationStrategyFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;

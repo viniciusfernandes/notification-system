@@ -1,4 +1,4 @@
-package br.com.mercadolivre.notificationsystem.service;
+package br.com.mercadolivre.notificationsystem.notification;
 
 import br.com.mercadolivre.notificationsystem.model.Advertisement;
 

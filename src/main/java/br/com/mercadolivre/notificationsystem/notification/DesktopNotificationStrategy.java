@@ -1,4 +1,4 @@
-package br.com.mercadolivre.notificationsystem.service;
+package br.com.mercadolivre.notificationsystem.notification;
 
 import br.com.mercadolivre.notificationsystem.model.Advertisement;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +13,7 @@ public class DesktopNotificationStrategy implements NotificationStrategy {
 
   @Override
   public void sendIt(Advertisement advertisement) {
-    messagingTemplate.convertAndSend("/topic/advertisement-notifications", advertisement);
+    messagingTemplate.convertAndSend("/queue/advertisement-notifications/users/"
+        +advertisement.getUserId(), advertisement);
   }
 }

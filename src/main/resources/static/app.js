@@ -17,8 +17,9 @@ function connect() {
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         setConnected(true);
-        console.log('Connected: ' + frame);
-        stompClient.subscribe('/topic/advertisement-notifications', function (response) {
+        var queue = '/queue/advertisement-notifications/users/'+$("#userId").val();
+        console.log('Connected to the queue: ' + queue);
+        stompClient.subscribe(queue, function (response) {
             var notification = JSON.parse(response.body);
             var message = notification.userId +' => '+notification.description;
             showGreeting(message);

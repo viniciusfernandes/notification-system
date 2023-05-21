@@ -1,4 +1,4 @@
-package br.com.mercadolivre.notificationsystem.service;
+package br.com.mercadolivre.notificationsystem.notification;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
