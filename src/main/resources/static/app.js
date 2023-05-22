@@ -20,7 +20,8 @@ function connect() {
         console.log('Connected to the queue: ' + queue);
         stompClient.subscribe(queue, function (response) {
             var notification = JSON.parse(response.body);
-            var message = notification.userId +' => '+notification.description;
+            var message = notification.title +' => '+notification.description;
+            console.log('advertisement: '+ message)
             showAdvertisements(message);
         });
     });

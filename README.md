@@ -42,5 +42,18 @@ Are you having trouble on running this application? Send an email to viniciussf@
 
 ## About this Solution
 
+### Scenario: Marketing and Data Mining  
+There are many systems responsible to collect the customer interactions and their product preferences to process in order to 
+decide what products are most likely to be offered to each customer according to their profile. Once all the data are ready to be sent to
+the customers we need a new application just to manage this advertisement notifications.
+
+This solutions has two module: 
+* The first one is the advertisement-notification-producer, responsible to manage all 
+the advertisements coming from the marketing department, stores that advertisements data to publish it in a message broker
+using a scheduled task
+* The second one in the notification-system, responsible to listening all the messages published in that message broker
+and decide for what channel the customer must ne notified.
+
+
 
 ![Alt Text](./images/notification-system-diagram.jpg)

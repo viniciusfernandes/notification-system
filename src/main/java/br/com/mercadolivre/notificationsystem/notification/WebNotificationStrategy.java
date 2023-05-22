@@ -2,15 +2,13 @@ package br.com.mercadolivre.notificationsystem.notification;
 
 import br.com.mercadolivre.notificationsystem.model.Advertisement;
 import br.com.mercadolivre.notificationsystem.notification.converter.AdvertisementConverter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
-import org.springframework.stereotype.Component;
 
-class DesktopNotificationStrategy implements NotificationStrategy {
+class WebNotificationStrategy implements NotificationStrategy {
 
   private SimpMessagingTemplate messagingTemplate;
 
-  DesktopNotificationStrategy(SimpMessagingTemplate messagingTemplate) {
+  WebNotificationStrategy(SimpMessagingTemplate messagingTemplate) {
     this.messagingTemplate = messagingTemplate;
   }
 
