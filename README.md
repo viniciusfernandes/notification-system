@@ -47,13 +47,25 @@ There are many systems responsible to collect the customer interactions and thei
 decide what products are most likely to be offered to each customer according to their profile. Once all the data are ready to be sent to
 the customers we need a new application just to manage this advertisement notifications.
 
+
+#### Architectural Decisions
+
 This solutions has two module: 
 * The first one is the advertisement-notification-producer, responsible to manage all 
 the advertisements coming from the marketing department, stores that advertisements data to publish it in a message broker
 using a scheduled task
-* The second one in the notification-system, responsible to listening all the messages published in that message broker
-and decide for what channel the customer must ne notified.
+* The second one is the notification-system, responsible to listening all the messages published in that message broker
+and decide for what channel the customer must be notified.
 
+Why split it in two? Taking this way, we can keep both services working fine even if one of them crashes suddenly, avoiding
+any consequence. Suppose the notification system is crashing, then the marketing department still able to send ads
+notifications to the system while the notification system is down.
+
+Why adopt a messaging approach? In my point of view this approach enables  different marketing areas on 
+send advertisement notifications, for example: the section responsible for selling houses, the sections responsible for selling cars,
+the section responsible for selling sports products and so on. So, if the notification-system is taking so long on processing 
+messages anyone of this systems will get any consequence because they still able to send the advertisements notifications
+to the broker.
 
 
 ![Alt Text](./images/notification-system-diagram.jpg)
