@@ -42,7 +42,7 @@ Are you having trouble on running this application? Send an email to viniciussf@
 
 ## Solution Description
 
-![Alt Text](./notification-system-diagram.jpg)
+![Alt Text](./images/notification-system-diagram.jpg)
 
 
 ## License
