@@ -61,7 +61,7 @@ Why split it in two? Taking this way, we can keep both services working fine eve
 any consequence. Suppose the notification system is crashing, then the marketing department still able to send ads
 notifications to the system while the notification system is down.
 
-Why adopt a messaging approach? In my point of view this approach enables  different marketing areas on 
+Why taking a massage approach? In my point of view this approach enables  different marketing areas on 
 send advertisement notifications, for example: the section responsible for selling houses, the sections responsible for selling cars,
 the section responsible for selling sports products and so on. So, if the notification-system is taking so long on processing 
 messages anyone of this systems will get any consequence because they still able to send the advertisements notifications
