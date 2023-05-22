@@ -1,4 +1,4 @@
-package br.com.mercadolivre.notificationsystem.repository;
+package br.com.mercadolivre.notificationsystem.model.repository;
 
 import br.com.mercadolivre.notificationsystem.model.AdvertisementExclusion;
 

@@ -1,6 +1,7 @@
 package br.com.mercadolivre.notificationsystem.repository;
 
 import br.com.mercadolivre.notificationsystem.model.AdvertisementExclusion;
+import br.com.mercadolivre.notificationsystem.model.repository.AdvertisementExclusionRepository;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
 import java.util.ArrayList;

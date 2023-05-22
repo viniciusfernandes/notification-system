@@ -1,6 +1,7 @@
 package br.com.mercadolivre.notificationsystem.repository;
 
 import br.com.mercadolivre.notificationsystem.model.AdvertisementExclusion;
+import br.com.mercadolivre.notificationsystem.model.repository.AdvertisementExclusionRepository;
 
 import java.util.ArrayList;
 import java.util.HashMap;

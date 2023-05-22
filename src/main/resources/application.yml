@@ -22,3 +22,6 @@ spring:
 database:
   strategy: HASHTABLE
 
+notification:
+  cron: "*/10 * * * * *"
+

@@ -2,7 +2,7 @@ package br.com.mercadolivre.notificationsystem.service;
 
 import br.com.mercadolivre.notificationsystem.exception.BusinessException;
 import br.com.mercadolivre.notificationsystem.model.AdvertisementExclusion;
-import br.com.mercadolivre.notificationsystem.repository.AdvertisementExclusionRepository;
+import br.com.mercadolivre.notificationsystem.model.repository.AdvertisementExclusionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +32,8 @@ public class AdvertisementExclusionService {
   public boolean isCustomerExcluded(String customerId) {
     return exclusionRepository.findById(customerId) != null;
   }
-  public List<String > findAllExcludedIdCustomers(){
+
+  public List<String> findAllExcludedIdCustomers() {
     return exclusionRepository.findAllExcludedIdCustomers();
   }
 }
