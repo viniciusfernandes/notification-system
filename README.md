@@ -40,10 +40,7 @@ $ ./gradlew bootRun
 ## Getting Help
 Are you having trouble on running this application? Send an email to viniciussf@hotmail.com and we will reply to you as soon as we can
 
-## Solution Description
+## About this Solution
+
 
 ![Alt Text](./images/notification-system-diagram.jpg)
-
-
-## License
-Spring Boot is Open Source software released under the https://www.apache.org/licenses/LICENSE-2.0.html[Apache 2.0 license].

@@ -1,6 +1,18 @@
 version: "3"
 
 services:
+  advertisement-notification:
+    image: viniciussf/advertisement-notification
+    hostname: advertisement-notification
+    container_name: advertisement-notification
+    ports:
+      - "8099:8099"
+    networks:
+      - kafka
+    depends_on:
+      - zookeeper
+      - broker
+
   zookeeper:
     image: confluentinc/cp-zookeeper:5.4.0
     hostname: zookeeper
@@ -47,6 +59,21 @@ services:
     networks:
       - kafka
 
+  schema-registry:
+    image: confluentinc/cp-schema-registry:5.4.0
+    hostname: schema-registry
+    container_name: schema-registry
+    depends_on:
+      - zookeeper
+      - broker
+    ports:
+      - "8081:8081"
+    networks:
+      - kafka
+    environment:
+      SCHEMA_REGISTRY_HOST_NAME: schema-registry
+      SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: "zookeeper:2181"
+
   control-center:
     image: confluentinc/cp-enterprise-control-center:5.4.0
     hostname: control-center
@@ -54,6 +81,7 @@ services:
     depends_on:
       - zookeeper
       - broker
+      - schema-registry
     ports:
       - "9021:9021"
     networks:
@@ -61,28 +89,13 @@ services:
     environment:
       CONTROL_CENTER_BOOTSTRAP_SERVERS: 'broker:29092'
       CONTROL_CENTER_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      CONTROL_CENTER_SCHEMA_REGISTRY_URL: "http://schema-registry:8081"
       CONTROL_CENTER_REPLICATION_FACTOR: 1
       CONTROL_CENTER_INTERNAL_TOPICS_PARTITIONS: 1
       CONTROL_CENTER_MONITORING_INTERCEPTOR_TOPIC_PARTITIONS: 1
       CONFLUENT_METRICS_TOPIC_REPLICATION: 1
       PORT: 9021
 
-  mongodb:
-    container_name: mongodb
-    image: mongo:6.0
-    volumes:
-      - ~/mongo:/data/db
-    ports:
-      - "27017:27017"
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=1234
-      - MONGO_INITDB_DATABASE=advertisementdb
-    networks:
-      - mongo
-
 networks:
   kafka:
-    driver: bridge
-  mongo:
     driver: bridge

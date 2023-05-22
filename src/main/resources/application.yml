@@ -2,8 +2,23 @@ server:
   port: 8099
   servlet:
     context-path: /notification-system
+
 kafka:
   bootstrap-servers: localhost:9092
   topic:
     groupId: notification
     notification: topic-advertisement-notifications
+
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: advertisementdb
+      username: root
+      password: password
+
+## Values: HASHTABLE, MONGODB
+database:
+  strategy: HASHTABLE
+

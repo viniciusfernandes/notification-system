@@ -2,6 +2,7 @@ package br.com.mercadolivre.notificationsystem.message;
 
 import br.com.mercadolivre.notificationsystem.exception.BusinessException;
 import br.com.mercadolivre.notificationsystem.model.Advertisement;
+import br.com.mercadolivre.notificationsystem.service.AdvertisementExclusionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,9 +19,11 @@ import java.util.List;
 public class AdvertisementNotificationProducer {
   @Autowired
   private KafkaTemplate<String, Advertisement> notificationKafkaTemplate;
-
   @Value(value = "${kafka.topic.notification}")
   private String topicName;
+
+  @Autowired
+  private AdvertisementExclusionService exclusionService;
 
   public void sendMessage(List<Advertisement> advertisements) throws BusinessException {
     if (advertisements == null || advertisements.isEmpty()) {
@@ -30,6 +33,9 @@ public class AdvertisementNotificationProducer {
     for (var advertisement : advertisements) {
       if (advertisement == null || !advertisement.isValid()) {
         errorMessage.add(advertisement);
+      }
+      if (exclusionService.isCustomerExcluded(advertisement.getUserId())) {
+        continue;
       }
       var key = advertisement.getCode() + ":" + advertisement.getUserId();
       var future = notificationKafkaTemplate.send(topicName, key, advertisement);
