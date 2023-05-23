@@ -1,7 +1,6 @@
 var stompClient = null;
 
 function setConnected(connected) {
-    $("#disconnect").prop("disabled", !connected);
     if (connected) {
         $("#advertisements_grid").show();
     }
@@ -32,7 +31,7 @@ function disconnect() {
         stompClient.disconnect();
     }
     setConnected(false);
-    console.log("Disconnected");
+    console.log("Disconnecting...");
 }
 
 
@@ -44,7 +43,6 @@ $(function () {
     $("form").on('submit', function (e) {
         e.preventDefault();
     });
-    $("#disconnect").click(function() { disconnect(); });
     $("#send").click(function() { sendName(); });
     $('#userId').blur(function(){
         disconnect();
