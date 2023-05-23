@@ -95,10 +95,10 @@ because this process was scheduled to run in each 10 seconds.
 
 #### Canceling notifications:
 
-* Hit this endpoint do cancel (user opt-out) the notifications for this specific user `POST => http://localhost:8099/notification-system/advertisement-exclusions/customers/111`
+* Hit the following endpoint to cancel (user opt-out) the notifications for this specific user `POST => http://localhost:8099/notification-system/advertisement-exclusions/customers/111`
 * Repeat the Sending Notifications steps and you can check the USER ID=111 will not receive the notifications anymore.
 
-#### Enable Notifications Again:
+#### Enable notifications:
 * If you want to enable the customer notifications again you can hit this endpoint `DELETE => http://localhost:8099/notification-system/advertisement-exclusions/customers/111`
 * Repeat the Sending Notifications steps and you can check the USER ID=111 will be able to receive notifications.
 
