@@ -102,10 +102,6 @@ because this process was scheduled to run in each 10 seconds.
 * If you want to enable the customer notifications again you can hit this endpoint `DELETE => http://localhost:8099/notification-system/advertisement-exclusions/customers/111`
 * Repeat the Sending Notifications steps and you can check the USER ID=111 will be able to receive notifications.
 
-
-## Getting Help
-Are you having trouble on running this application? Send an email to viniciussf@hotmail.com and we will reply to you as soon as we can
-
 ## About this Solution
 
 ### Scenario: Marketing and Data Mining  
@@ -141,3 +137,7 @@ notifications-system, this decision was due to simplify the code base presentati
 * This solution was designed to connect with a MongoDB running in a aparted container, but as we were getting authentication issues 
 we decided to change the database strategy to run a custom database, how you can see in `AdvertisementHashTableRepository.java` file. 
 This database strategy be switched changing the property `database.strategy` in the `application.yml`.
+
+## Getting Help
+Are you having trouble on running this application? Send an email to viniciussf@hotmail.com and we will reply to you as soon as we can
+
