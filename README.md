@@ -82,7 +82,7 @@ each user using his USER ID
     {
         "code": "16",
         "userId": "111",
-        "userEmail": "marcos@hotmail.com",
+        "userEmail": "viniiussf@hotmail.com",
         "title": "Promocao de Notebook",
         "description": "Notebook Samsung X221 I8 por R$1299,99",
         "channel": "MOBILE"
