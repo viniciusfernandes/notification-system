@@ -1,7 +1,7 @@
 package br.com.mercadolivre.notificationsystem.notification;
 
-import br.com.mercadolivre.notificationsystem.model.Advertisement;
+import br.com.mercadolivre.notificationsystem.message.dto.NotificationDto;
 
 public interface NotificationStrategy {
-  void sendIt(Advertisement advertisement);
+  void sendIt(NotificationDto notification);
 }

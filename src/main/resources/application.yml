@@ -1,7 +1,19 @@
 server:
-  port: 8099
+  port: 8098
   servlet:
     context-path: /notification-system
+
+## Values: HASHTABLE, MONGODB
+database:
+    strategy: HASHTABLE
+
+notification:
+  cron: "*/10 * * * * *"
+
+---
+spring:
+  profiles:
+    active: local
 
 kafka:
   bootstrap-servers: localhost:9092
@@ -9,19 +21,24 @@ kafka:
     groupId: notification
     notification: topic-advertisement-notifications
 
+---
 spring:
-  data:
-    mongodb:
-      host: localhost
-      port: 27017
-      database: advertisementdb
-      username: root
-      password: password
+  profiles:
+    active: docker
 
-## Values: HASHTABLE, MONGODB
-database:
-  strategy: HASHTABLE
-
-notification:
-  cron: "*/10 * * * * *"
-
+kafka:
+  bootstrap-servers: localhost:9092
+  topic:
+    groupId: notification
+    notification: topic-advertisement-notifications
+---
+#spring:
+ # data:
+  #  mongodb:
+   #   host: mongo-server
+    #  port: 27017
+     # database: advertisement-notification
+      #username: admin
+      #password: 1234
+      #authentication-database: admin
+      #auto-index-creation: true

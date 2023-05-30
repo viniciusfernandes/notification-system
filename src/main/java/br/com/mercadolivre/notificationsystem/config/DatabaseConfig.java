@@ -1,6 +1,6 @@
 package br.com.mercadolivre.notificationsystem.config;
 
-import br.com.mercadolivre.notificationsystem.model.repository.AdvertisementRepository;
+import br.com.mercadolivre.notificationsystem.model.repository.AdvertisementNotificationRepository;
 import br.com.mercadolivre.notificationsystem.repository.AdvertisementExclusionHashTableRepository;
 import br.com.mercadolivre.notificationsystem.repository.AdvertisementExclusionMongoRepository;
 import br.com.mercadolivre.notificationsystem.model.repository.AdvertisementExclusionRepository;
@@ -9,7 +9,6 @@ import br.com.mercadolivre.notificationsystem.repository.AdvertisementMongoRepos
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.mongodb.core.MongoTemplate;
 
 @Configuration
 public class DatabaseConfig {
@@ -17,17 +16,19 @@ public class DatabaseConfig {
   private String database;
 
   @Bean
-  public AdvertisementExclusionRepository advertisementExclusionRepository(MongoTemplate mongoTemplate) {
+  //public AdvertisementExclusionRepository advertisementExclusionRepository(MongoTemplate mongoTemplate) {
+  public AdvertisementExclusionRepository advertisementExclusionRepository( ) {
     if (database.equals("MONGODB")) {
-      return new AdvertisementExclusionMongoRepository(mongoTemplate);
+      return new AdvertisementExclusionMongoRepository(null);
     }
     return new AdvertisementExclusionHashTableRepository();
   }
 
   @Bean
-  public AdvertisementRepository advertisementRepository(MongoTemplate mongoTemplate) {
+  //public AdvertisementRepository advertisementRepository(MongoTemplate mongoTemplate) {
+  public AdvertisementNotificationRepository advertisementRepository( ) {
     if (database.equals("MONGODB")) {
-      return new AdvertisementMongoRepository(mongoTemplate);
+      return new AdvertisementMongoRepository(null);
     }
     return new AdvertisementHashTableRepository();
   }

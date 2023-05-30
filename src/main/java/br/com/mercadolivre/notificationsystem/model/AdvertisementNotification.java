@@ -1,9 +1,15 @@
 package br.com.mercadolivre.notificationsystem.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-public class Advertisement {
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class AdvertisementNotification {
   private String code;
   private String userId;
   private String title;

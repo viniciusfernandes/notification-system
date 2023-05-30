@@ -1,13 +1,12 @@
 package br.com.mercadolivre.notificationsystem.repository;
 
-import br.com.mercadolivre.notificationsystem.model.Advertisement;
-import br.com.mercadolivre.notificationsystem.model.repository.AdvertisementRepository;
+import br.com.mercadolivre.notificationsystem.model.AdvertisementNotification;
+import br.com.mercadolivre.notificationsystem.model.repository.AdvertisementNotificationRepository;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public class AdvertisementMongoRepository implements AdvertisementRepository {
+public class AdvertisementMongoRepository implements AdvertisementNotificationRepository {
 
   private MongoTemplate mongoTemplate;
 
@@ -16,22 +15,21 @@ public class AdvertisementMongoRepository implements AdvertisementRepository {
   }
 
   @Override
-  public void save(List<Advertisement> advertisements) {
+  public void save(List<AdvertisementNotification> advertisements) {
     for (var advert : advertisements) {
       mongoTemplate.save(advert);
     }
   }
 
   @Override
-  public List<Advertisement> findAll() {
-    return mongoTemplate.findAll(Advertisement.class);
+  public List<AdvertisementNotification> findAll() {
+    return mongoTemplate.findAll(AdvertisementNotification.class);
   }
 
   @Override
   public void removerAllById(List<String> ids) {
     ids.forEach(id -> {
-      var advertisement = new Advertisement();
-      advertisement.setCode(id);
+      var advertisement = AdvertisementNotification.builder().code(id).build();
       mongoTemplate.remove(advertisement);
     });
   }

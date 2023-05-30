@@ -1,6 +1,7 @@
 package br.com.mercadolivre.notificationsystem.message;
 
-import br.com.mercadolivre.notificationsystem.model.Advertisement;
+import br.com.mercadolivre.notificationsystem.message.dto.NotificationDto;
+import br.com.mercadolivre.notificationsystem.model.AdvertisementNotification;
 import br.com.mercadolivre.notificationsystem.notification.ChannelType;
 import br.com.mercadolivre.notificationsystem.notification.NotificationStrategyFactory;
 import lombok.extern.slf4j.Slf4j;
@@ -16,14 +17,14 @@ public class AdvertisementNotificationListener {
 
   @KafkaListener(topics = "${kafka.topic.notification}",
       groupId = "${kafka.topic.groupId}", containerFactory = "advertisementKafkaListener")
-  public void advertisement(Advertisement advertisement) {
-    log.debug("Received Message in group record: " + advertisement);
-    var channel = ChannelType.valueOf(advertisement.getChannel());
+  public void advertisement(NotificationDto notification) {
+    log.debug("Received Message in group record: " + notification);
+    var channel = ChannelType.valueOf(notification.getChannel());
 
     try {
-      strategyFactory.getNotification(channel).sendIt(advertisement);
+      strategyFactory.getNotification(channel).sendIt(notification);
     } catch (Exception e) {
-      log.error(String.format("Failure on notifying the advertisement=%s", advertisement), e);
+      log.error(String.format("Failure on notifying the advertisement=%s", notification), e);
     }
 
   }

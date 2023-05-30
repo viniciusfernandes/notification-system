@@ -1,22 +1,22 @@
 package br.com.mercadolivre.notificationsystem.repository;
 
-import br.com.mercadolivre.notificationsystem.model.Advertisement;
-import br.com.mercadolivre.notificationsystem.model.repository.AdvertisementRepository;
+import br.com.mercadolivre.notificationsystem.model.AdvertisementNotification;
+import br.com.mercadolivre.notificationsystem.model.repository.AdvertisementNotificationRepository;
 
 import java.util.*;
 
-public class AdvertisementHashTableRepository implements AdvertisementRepository {
-  private Map<String, Advertisement> table = new HashMap<>();
+public class AdvertisementHashTableRepository implements AdvertisementNotificationRepository {
+  private Map<String, AdvertisementNotification> table = new HashMap<>();
 
   @Override
-  public void save(List<Advertisement> advertisements) {
+  public void save(List<AdvertisementNotification> advertisements) {
     for (var advert : advertisements) {
       table.put(advert.getCode(), advert);
     }
   }
 
   @Override
-  public List<Advertisement> findAll() {
+  public List<AdvertisementNotification> findAll() {
     if (table.isEmpty()) {
       return Collections.emptyList();
     }

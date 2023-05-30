@@ -1,6 +1,7 @@
 package br.com.mercadolivre.notificationsystem.notification;
 
-import br.com.mercadolivre.notificationsystem.model.Advertisement;
+import br.com.mercadolivre.notificationsystem.message.dto.NotificationDto;
+import br.com.mercadolivre.notificationsystem.model.AdvertisementNotification;
 import br.com.mercadolivre.notificationsystem.notification.converter.AdvertisementConverter;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 
@@ -13,9 +14,9 @@ class WebNotificationStrategy implements NotificationStrategy {
   }
 
   @Override
-  public void sendIt(Advertisement advertisement) {
-    var advertisementDto = AdvertisementConverter.converte(advertisement);
+  public void sendIt(NotificationDto notification) {
+    var advertisementDto = AdvertisementConverter.converte(notification);
     messagingTemplate.convertAndSend("/queue/advertisement-notifications/users/"
-        + advertisement.getUserId(), advertisementDto);
+        + notification.getUserId(), advertisementDto);
   }
 }

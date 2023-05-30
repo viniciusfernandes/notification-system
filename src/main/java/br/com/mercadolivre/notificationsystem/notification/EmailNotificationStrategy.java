@@ -1,13 +1,13 @@
 package br.com.mercadolivre.notificationsystem.notification;
 
-import br.com.mercadolivre.notificationsystem.model.Advertisement;
+import br.com.mercadolivre.notificationsystem.message.dto.NotificationDto;
+import br.com.mercadolivre.notificationsystem.model.AdvertisementNotification;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 
 @Slf4j
 class EmailNotificationStrategy implements NotificationStrategy {
   @Override
-  public void sendIt(Advertisement advertisement) {
-    log.info("Send advertisement to EMAIL CHANNEL=" + advertisement);
+  public void sendIt(NotificationDto notification) {
+    log.info("Send advertisement to EMAIL CHANNEL=" + notification);
   }
 }
