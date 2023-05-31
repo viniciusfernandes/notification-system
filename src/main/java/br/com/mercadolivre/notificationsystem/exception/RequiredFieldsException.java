@@ -1,7 +1,5 @@
 package br.com.mercadolivre.notificationsystem.exception;
 
-import lombok.Data;
-
 import java.util.List;
 
 public class RequiredFieldsException extends Exception {

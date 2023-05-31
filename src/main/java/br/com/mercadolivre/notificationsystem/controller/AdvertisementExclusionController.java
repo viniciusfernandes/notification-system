@@ -1,6 +1,5 @@
 package br.com.mercadolivre.notificationsystem.controller;
 
-import br.com.mercadolivre.notificationsystem.exception.BusinessException;
 import br.com.mercadolivre.notificationsystem.exception.RequiredFieldsException;
 import br.com.mercadolivre.notificationsystem.service.AdvertisementExclusionService;
 import org.springframework.beans.factory.annotation.Autowired;
