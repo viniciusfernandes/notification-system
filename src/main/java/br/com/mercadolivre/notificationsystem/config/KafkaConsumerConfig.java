@@ -1,6 +1,6 @@
 package br.com.mercadolivre.notificationsystem.config;
 
-import br.com.mercadolivre.notificationsystem.message.AdvertisementDeserializer;
+import br.com.mercadolivre.notificationsystem.message.NotificationDeserializer;
 import br.com.mercadolivre.notificationsystem.message.dto.NotificationDto;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -31,7 +31,7 @@ public class KafkaConsumerConfig {
     props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
     props.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
     props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-    props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, AdvertisementDeserializer.class);
+    props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, NotificationDeserializer.class);
     return new DefaultKafkaConsumerFactory<>(props);
   }
 

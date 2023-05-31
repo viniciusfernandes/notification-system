@@ -32,6 +32,7 @@ public class AdvertisementNotificationProducer {
         }
         var key = notification.getCode() + ":" + notification.getUserId();
         notificationKafkaTemplate.send(topicName, key, notification);
+        processedNotifications.add(notification.getCode());
       } catch (Exception e) {
         var message = String.format("Failure on checking if the user=%s was excluded from the notifications",
             notification.getUserId());

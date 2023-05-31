@@ -17,8 +17,8 @@ public class AdvertisementExclusionHashTableRepository implements AdvertisementE
   }
 
   @Override
-  public void deleteById(String id) {
-    table.remove(id);
+  public int deleteById(String id) {
+    return table.remove(id) != null ? 1 : 0;
   }
 
   @Override

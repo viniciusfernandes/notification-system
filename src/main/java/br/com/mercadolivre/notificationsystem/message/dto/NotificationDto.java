@@ -10,6 +10,9 @@ public class NotificationDto {
   private String description;
   private String channel;
 
+  public NotificationDto() {
+  }
+
   public NotificationDto(String code, String userId, String title, String description, String channel) {
     this.code = code;
     this.userId = userId;

@@ -8,6 +8,7 @@ import br.com.mercadolivre.notificationsystem.exception.RequiredFieldsException;
 import br.com.mercadolivre.notificationsystem.service.AdvertisementNotificationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,10 +22,10 @@ public class AdvertisementNotificationController {
   @Autowired
   private AdvertisementNotificationService advertisementService;
 
-  @PostMapping("/advertisement-notifications")
+  @PostMapping(value = "/advertisement-notifications", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<String> saveNotifications(@RequestBody List<AdvertisementNotificationDto> advertisementDtos) throws RequiredFieldsException {
     var advertisementNotifications = toModel(advertisementDtos);
     advertisementService.save(advertisementNotifications);
-    return ResponseEntity.accepted().build();
+    return ResponseEntity.ok().build();
   }
 }

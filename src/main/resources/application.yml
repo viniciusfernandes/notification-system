@@ -2,13 +2,18 @@ server:
   port: 8098
   servlet:
     context-path: /notification-system
+  error:
+    include-message: 'always'
+    include-binding-errors: 'always'
+    include-exception: 'false'
+
 
 ## Values: HASHTABLE, MONGODB
 database:
     strategy: HASHTABLE
 
 notification:
-  cron: "*/10 * * * * *"
+  cron: "0/15 * * * * *"
 
 ---
 spring:

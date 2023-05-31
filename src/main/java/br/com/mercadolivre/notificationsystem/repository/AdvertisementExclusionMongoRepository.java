@@ -20,7 +20,8 @@ public class AdvertisementExclusionMongoRepository implements AdvertisementExclu
   }
 
   @Override
-  public void deleteById(String id) {
+  public int deleteById(String id) {
+    return 0;
   }
 
   @Override

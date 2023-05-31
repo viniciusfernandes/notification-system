@@ -7,7 +7,7 @@ import java.util.List;
 public interface AdvertisementExclusionRepository {
   void save(AdvertisementExclusion advertisementExclusion);
 
-  void deleteById(String id);
+  int deleteById(String id);
 
   AdvertisementExclusion findById(String id);
 

@@ -1,6 +1,7 @@
 package br.com.mercadolivre.notificationsystem.service;
 
 import br.com.mercadolivre.notificationsystem.exception.BusinessException;
+import br.com.mercadolivre.notificationsystem.exception.RequiredFieldsException;
 import br.com.mercadolivre.notificationsystem.model.AdvertisementExclusion;
 import br.com.mercadolivre.notificationsystem.model.repository.AdvertisementExclusionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,20 +14,20 @@ public class AdvertisementExclusionService {
   @Autowired
   private AdvertisementExclusionRepository exclusionRepository;
 
-  public void excludeCustomer(String customerId) throws BusinessException {
+  public void excludeCustomer(String customerId) throws RequiredFieldsException {
     if (customerId == null || customerId.isBlank()) {
-      throw new BusinessException("To exclude an user from the advertisements you should send a nonempty custonerId");
+      throw new RequiredFieldsException("To exclude an user from the advertisements you should send a nonempty customerId");
     }
 
     var exclusion = AdvertisementExclusion.builder().customerId(customerId).build();
     exclusionRepository.save(exclusion);
   }
 
-  public void cancelExclusion(String customerId) {
+  public int cancelExclusion(String customerId) throws RequiredFieldsException {
     if (customerId == null || customerId.isBlank()) {
-      return;
+      throw new RequiredFieldsException("To exclude an user from the advertisements you should send a nonempty customerId");
     }
-    exclusionRepository.deleteById(customerId);
+    return exclusionRepository.deleteById(customerId);
   }
 
   public boolean isCustomerExcluded(String customerId) {
