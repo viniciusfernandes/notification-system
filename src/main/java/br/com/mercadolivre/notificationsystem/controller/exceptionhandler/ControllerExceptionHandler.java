@@ -19,8 +19,8 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
   }
 
   @ExceptionHandler(Exception.class)
-  public ResponseEntity<String> handleGenericException(Exception ex) {
+  public ResponseEntity<ErrorResponse> handleGenericException(Exception ex) {
     log.error(ex.getMessage(), ex);
-    return ResponseEntity.internalServerError().body(ex.getMessage());
+    return ResponseEntity.internalServerError().body(new ErrorResponse(ex.getMessage() ));
   }
 }

@@ -16,6 +16,10 @@ public class ErrorResponse {
   public ErrorResponse() {
   }
 
+  public ErrorResponse(String message) {
+    this.message = message;
+  }
+
   public ErrorResponse(String message, List<String> errors) {
     this.message = message;
     this.errors = errors;

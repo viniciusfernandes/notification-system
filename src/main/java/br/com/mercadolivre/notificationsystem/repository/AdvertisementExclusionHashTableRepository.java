@@ -23,10 +23,15 @@ public class AdvertisementExclusionHashTableRepository implements AdvertisementE
   }
 
   @Override
-  @Cacheable(value = "${redis.cache.exclusion-customer}")
   public AdvertisementExclusion findById(String id) {
     System.out.println("id customer: " + id);
     return table.get(id);
+  }
+
+  @Override
+  @Cacheable(value = "${redis.cache.exclusion-customer}", key = "#id")
+  public Boolean isCustomerExcluded(String id) {
+    return findById(id) != null;
   }
 
   @Override

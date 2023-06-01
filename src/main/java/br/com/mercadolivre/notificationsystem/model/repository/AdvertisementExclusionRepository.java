@@ -11,6 +11,8 @@ public interface AdvertisementExclusionRepository {
 
   AdvertisementExclusion findById(String id);
 
+  Boolean  isCustomerExcluded(String id);
+
   List<String> findAllExcludedIdCustomers();
 
 }

@@ -28,7 +28,7 @@ public class AdvertisementNotificationController {
   }
 
   @DeleteMapping(value = "/advertisement-notifications/customers/{idCustomer}")
-  public ResponseEntity<String> excludeCustomer(@PathVariable String idCustomer) throws RequiredFieldsException {
+  public ResponseEntity<String> disableCustomerNotifications(@PathVariable String idCustomer) throws RequiredFieldsException {
     var total = advertisementService.disableCustomerNotification(idCustomer);
     if (total <= 0) {
       ResponseEntity.badRequest().build();
@@ -37,7 +37,7 @@ public class AdvertisementNotificationController {
   }
 
   @PostMapping(value = "/advertisement-notifications/customers/{idCustomer}")
-  public ResponseEntity<String> includeCustomer(@PathVariable String idCustomer) throws RequiredFieldsException {
+  public ResponseEntity<String> enableCustomerNotifications(@PathVariable String idCustomer) throws RequiredFieldsException {
     var total = advertisementService.enableCustomerNotification(idCustomer);
     return ResponseEntity.ok().build();
   }

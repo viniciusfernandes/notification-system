@@ -43,10 +43,6 @@ public class AdvertisementNotificationService {
     return advertisementNotificationRepository.removeAllByCustomerId(customerId);
   }
 
-  public boolean isNotCustomerExcluded(String customerId) {
-    return advertisementExclusionRepository.findById(customerId) == null;
-  }
-
   public void save(List<AdvertisementNotification> advertisements) throws RequiredFieldsException {
     if (advertisements == null || advertisements.isEmpty()) {
       return;
@@ -60,7 +56,8 @@ public class AdvertisementNotificationService {
     if (!errorMessage.isEmpty()) {
       throw new RequiredFieldsException("The following advertisements have empty fields, but they are mandatory: ", errorMessage);
     }
-    var advertisementsToPublish = advertisements.stream().filter(advertisement -> isNotCustomerExcluded(advertisement.getUserId()))
+    var advertisementsToPublish = advertisements.stream().filter(advertisement ->
+            advertisementExclusionRepository.isCustomerExcluded(advertisement.getUserId()))
         .collect(Collectors.toList());
 
     advertisementNotificationRepository.save(advertisementsToPublish);

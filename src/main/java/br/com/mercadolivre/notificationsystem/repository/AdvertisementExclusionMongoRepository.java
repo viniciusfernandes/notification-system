@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdvertisementExclusionMongoRepository implements AdvertisementExclusionRepository {
-  private MongoTemplate mongoTemplate;
+  private final MongoTemplate mongoTemplate;
 
   public AdvertisementExclusionMongoRepository(MongoTemplate mongoTemplate) {
     this.mongoTemplate = mongoTemplate;
@@ -27,6 +27,11 @@ public class AdvertisementExclusionMongoRepository implements AdvertisementExclu
   @Override
   public AdvertisementExclusion findById(String id) {
     return null;
+  }
+
+  @Override
+  public Boolean isCustomerExcluded(String id) {
+    return true;
   }
 
   @Override
