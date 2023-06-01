@@ -1,6 +1,7 @@
 package br.com.mercadolivre.notificationsystem.controller.exceptionhandler;
 
 import br.com.mercadolivre.notificationsystem.exception.RequiredFieldsException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
+@Slf4j
 public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
   @ExceptionHandler(RequiredFieldsException.class)
   @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -18,6 +20,7 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
   @ExceptionHandler(Exception.class)
   public ResponseEntity<String> handleGenericException(Exception ex) {
+    log.error(ex.getMessage(), ex);
     return ResponseEntity.internalServerError().body(ex.getMessage());
   }
 }

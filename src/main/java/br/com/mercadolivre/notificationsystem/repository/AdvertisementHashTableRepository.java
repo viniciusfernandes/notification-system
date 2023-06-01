@@ -6,7 +6,7 @@ import br.com.mercadolivre.notificationsystem.model.repository.AdvertisementNoti
 import java.util.*;
 
 public class AdvertisementHashTableRepository implements AdvertisementNotificationRepository {
-  private Map<String, AdvertisementNotification> table = new HashMap<>();
+  private final Map<String, AdvertisementNotification> table = new HashMap<>();
 
   @Override
   public void save(List<AdvertisementNotification> advertisements) {
@@ -24,7 +24,19 @@ public class AdvertisementHashTableRepository implements AdvertisementNotificati
   }
 
   @Override
-  public void removerAllById(List<String> ids) {
+  public void removeAllByCode(List<String> ids) {
     ids.forEach(id -> table.remove(id));
+  }
+
+  @Override
+  public int removeAllByCustomerId(String customerId) {
+    var advertisements = table.values();
+    int total = 0;
+    for (var advertisement : advertisements) {
+      if (advertisement.getUserId().equals(customerId) && table.remove(advertisement.getCode()) != null) {
+        total++;
+      }
+    }
+    return total;
   }
 }

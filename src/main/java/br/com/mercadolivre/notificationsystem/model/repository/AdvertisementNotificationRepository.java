@@ -5,9 +5,11 @@ import br.com.mercadolivre.notificationsystem.model.AdvertisementNotification;
 import java.util.List;
 
 public interface AdvertisementNotificationRepository {
-  public void save(List<AdvertisementNotification> advertisements);
+  void save(List<AdvertisementNotification> advertisements);
 
   List<AdvertisementNotification> findAll();
 
-  void removerAllById(List<String> ids);
+  void removeAllByCode(List<String> ids);
+
+  int removeAllByCustomerId(String customerId);
 }

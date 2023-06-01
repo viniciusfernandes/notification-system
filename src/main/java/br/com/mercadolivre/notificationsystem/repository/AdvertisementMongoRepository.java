@@ -8,7 +8,7 @@ import java.util.List;
 
 public class AdvertisementMongoRepository implements AdvertisementNotificationRepository {
 
-  private MongoTemplate mongoTemplate;
+  private final MongoTemplate mongoTemplate;
 
   public AdvertisementMongoRepository(MongoTemplate mongoTemplate) {
     this.mongoTemplate = mongoTemplate;
@@ -27,10 +27,15 @@ public class AdvertisementMongoRepository implements AdvertisementNotificationRe
   }
 
   @Override
-  public void removerAllById(List<String> ids) {
+  public void removeAllByCode(List<String> ids) {
     ids.forEach(id -> {
       var advertisement = AdvertisementNotification.builder().code(id).build();
       mongoTemplate.remove(advertisement);
     });
+  }
+
+  @Override
+  public int removeAllByCustomerId(String customerId) {
+    return 0;
   }
 }

@@ -26,10 +26,24 @@ kafka:
     groupId: notification
     notification: topic-advertisement-notifications
 
+redis:
+  host: localhost
+  port: 6379
+  password:
+  cache:
+    exclusion-customer: "exclusion-customer-cache"
+
 ---
 spring:
   profiles:
     active: docker
+
+redis:
+  host: localhost
+  port: 6379
+  password:
+  cache:
+    exclusion-customer: "exclusion-customer-cache"
 
 kafka:
   bootstrap-servers: localhost:9092
