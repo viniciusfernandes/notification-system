@@ -7,7 +7,6 @@ import br.com.mercadolivre.notificationsystem.model.repository.AdvertisementExcl
 import br.com.mercadolivre.notificationsystem.model.repository.AdvertisementNotificationRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
@@ -19,12 +18,18 @@ import java.util.stream.Collectors;
 @Service
 @Slf4j
 public class AdvertisementNotificationService {
-  @Autowired
   private AdvertisementNotificationRepository advertisementNotificationRepository;
-  @Autowired
   private AdvertisementExclusionRepository advertisementExclusionRepository;
-  @Autowired
   private CacheManager cacheManager;
+
+  public AdvertisementNotificationService(
+      @Autowired AdvertisementNotificationRepository advertisementNotificationRepository,
+      @Autowired AdvertisementExclusionRepository advertisementExclusionRepository,
+      @Autowired CacheManager cacheManager) {
+    this.advertisementNotificationRepository = advertisementNotificationRepository;
+    this.advertisementExclusionRepository = advertisementExclusionRepository;
+    this.cacheManager = cacheManager;
+  }
 
   @CacheEvict(cacheNames = "${redis.cache.exclusion-customer}", key = "#customerId")
   public int enableCustomerNotification(String customerId) throws RequiredFieldsException {
@@ -72,12 +77,5 @@ public class AdvertisementNotificationService {
       return;
     }
     advertisementNotificationRepository.removeAllByCode(ids);
-  }
-
-  private void removeCache(String key) {
-    Cache cache = cacheManager.getCache("yourCacheName");
-    if (cache != null) {
-      cache.evict(key);
-    }
   }
 }
