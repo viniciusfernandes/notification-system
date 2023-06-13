@@ -15,7 +15,14 @@ database:
 notification:
   cron: "0/15 * * * * *"
 
----
+springdoc:
+  api-docs:
+    path: /api-docs
+
+swagger-ui:
+  operationsSorter: method
+  path: /swagger.html
+
 spring:
   profiles:
     active: local
