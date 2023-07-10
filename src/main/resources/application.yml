@@ -13,7 +13,7 @@ database:
     strategy: HASHTABLE
 
 notification:
-  cron: "0/15 * * * * *"
+  cron: "*/5 * * * * *"
 
 springdoc:
   api-docs:

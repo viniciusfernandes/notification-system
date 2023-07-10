@@ -62,7 +62,7 @@ public class AdvertisementNotificationService {
       throw new RequiredFieldsException("The following advertisements have empty fields, but they are mandatory: ", errorMessage);
     }
     var advertisementsToPublish = advertisements.stream().filter(advertisement ->
-            advertisementExclusionRepository.isCustomerExcluded(advertisement.getUserId()))
+            !advertisementExclusionRepository.isCustomerExcluded(advertisement.getUserId()))
         .collect(Collectors.toList());
 
     advertisementNotificationRepository.save(advertisementsToPublish);
