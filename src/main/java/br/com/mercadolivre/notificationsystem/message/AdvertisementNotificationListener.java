@@ -1,7 +1,6 @@
 package br.com.mercadolivre.notificationsystem.message;
 
 import br.com.mercadolivre.notificationsystem.message.dto.NotificationDto;
-import br.com.mercadolivre.notificationsystem.model.AdvertisementNotification;
 import br.com.mercadolivre.notificationsystem.notification.ChannelType;
 import br.com.mercadolivre.notificationsystem.notification.NotificationStrategyFactory;
 import lombok.extern.slf4j.Slf4j;
