@@ -18,10 +18,9 @@ notification:
 springdoc:
   api-docs:
     path: /api-docs
-
-swagger-ui:
-  operationsSorter: method
-  path: /swagger.html
+  swagger-ui:
+    operationsSorter: method
+    path: /swagger.html
 
 spring:
   profiles:
