@@ -9,10 +9,14 @@ a specific message destination to be notified of any new advertisement. Our prim
 
 
 ## Installation Steps
-* Install any JDK 11 or higher in your local environment. Once it is done, run the following command in your terminal 
+* Install any JDK 17 in your local environment and Gradle 7.6.1 Once it is done, run the following command in your terminal 
 to be sure the Java you picked up was set up properly.
 ```
 $ javac --version
+```
+and
+```
+$ gradle --version
 ```
 * Install the Docker containerization tool.
 * Install the docker-compose (container manage tool) to set up the infrastructure need on starting up this application
@@ -39,12 +43,12 @@ $ ./gradlew bootRun
 ## Getting Started
 
 ##### Sending notifications:
-* Open your browser an type the following resource `http://localhost:8099/notification-system/index.html`
+* Open your browser an type the following resource `http://localhost:8098/notification-system/index.html`
 * Type User Id = 111 and press tab to blur this field. This was done to emulate a logging process by the user and enable him 
 to receive any advertisement notification coming from the web server because all the notifications are going to be send for 
 each user using his USER ID
 * Hit the following endpoint to emulate the advertisements notification process that will be processed and sent to any customer
-`POST => http://localhost:8099/notification-system/advertisement-notifications` and use the payload below:
+`POST => http://localhost:8098/notification-system/advertisement-notifications` and use the payload below:
 ```
 [
     {
