@@ -1,3 +1,6 @@
+# =======================================
+# DEFAULT CONFIG (applies to ALL profiles)
+# =======================================
 server:
   port: 8098
   servlet:
@@ -7,13 +10,15 @@ server:
     include-binding-errors: 'always'
     include-exception: 'false'
 
-
-## Values: HASHTABLE, MONGODB
 database:
-    strategy: HASHTABLE
+  strategy: HASHTABLE
 
 notification:
   cron: "*/5 * * * * *"
+
+spring:
+  profiles:
+    active: local
 
 springdoc:
   api-docs:
@@ -22,24 +27,28 @@ springdoc:
     operationsSorter: method
     path: /swagger.html
 
-spring:
-  profiles:
-    active: local
-
-kafka:
-  bootstrap-servers: kafka-network:9092
-  topic:
-    groupId: notification
-    notification: topic-advertisement-notifications
-
 ---
 spring:
-  profiles:
-    active: docker
-
+  config:
+    activate:
+      on-profile: local
 kafka:
-  bootstrap-servers: kafka-network:9092
+  bootstrap-servers: localhost:9092
   topic:
     groupId: notification
     notification: topic-advertisement-notifications
+  consumer:
+    group-id: notification
+---
+spring:
+  config:
+    activate:
+      on-profile: docker
+kafka:
+  bootstrap-servers: kafka-server:29092
+  topic:
+    groupId: notification
+    notification: topic-advertisement-notifications
+  consumer:
+    group-id: notification
 ---
